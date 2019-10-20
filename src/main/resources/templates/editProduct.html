@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Päivitä kirpputorin tuotteita</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<div>
+		<form th:object="${product}" th:action="@{/save}" action="#" method="post">
+		
+			<label for="id">Tuote Id</label> 
+			<input type="text" id="id" th:field="*{id}"/>
+			<label for="productName">Tuotenimi</label> 
+			<input type="text" id="productName" th:field="*{productName}" />
+			<label for="color">Väri </label> 
+			<input type="text" id="color" th:field="${product.color}" />
+			<label for="size">Koko </label> 
+			<input type="text" id="size" th:field="${product.size}" />
+			<label for="price">Hinta </label> 
+			<input type="text" id="price" th:field="${product.price}" />
+			
+			
+			<p><label for="categories">Kategoria</label>
+			 <select id="categories" th:field="*{category}">
+       			<option th:each="category: ${categories}" th:value="${category.categoryid}" th:text="${category.name}"></option>
+    		</select></p>
+    		
+    		
+    		<!-- Avaa kuvalistan-->
+    		<p><label for="images">Kuva</label>
+			 <select id="images" th:field="*{ImageModel}">
+       			<option th:each="imagemodel: ${images}" th:value="${imagemodel.Imageid}" th:text="${imagemodel.Imageid} + ' ' + ${imagemodel.ImageName}"></option>
+    		</select></p>
+    	
+    		    		
+			<input type="submit" value="Päivitä"></input>
+		</form>
+
+	</div>
+	<br>
+	
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<body>
+<h2>Lataa kuva</h2>
+<th sec:authorize="hasAuthority('ADMIN')"> </th>
+
+<form method="POST" action="#" th:action ="@{/upload}" enctype="multipart/form-data">
+
+	<input type="file" name="image" /><br/><br/>
+	
+	<input type="submit" value="Lataa kuva" />
+</form>
+
+
+
+
+</body>
+</html>

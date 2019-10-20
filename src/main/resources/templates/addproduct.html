@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Productlist</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Lisää tuote kirpputorille</h1>
+	<div>
+		<form 
+		
+		
+		
+		th:object="${product}" th:action="@{save}" action="#" method="post">
+	
+<div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+    <p th:each="product : ${#fields.errors('*')}" th:text="${err}"></p>
+</div>
+
+		  	<label for="productName">Tuotenimi</label>
+			<input type="text" id="productName" th:field="*{productName}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+		  	<label for="color">Väri</label>
+			<input type="text" id="color" th:field="*{color}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+		  	<label for="size">Koko</label>
+			<input type="text" th:field="*{size}" />
+						
+			<div style="clear: both; display: block; height: 10px;"></div>
+				
+			<label for="price">Hinta (euroa)</label>
+			<input type="text" id="price" th:field="*{price}" />
+			<p th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Price
+					Error</p>
+			
+			
+			<!-- Alasvetovalikko kategoria -->
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<label for="category">Kategoria</label>
+			 <select id="category" th:field="*{category}" class="form-control">
+       			<option th:each="category: ${categories}" th:value="${category.categoryid}" th:text="${category.name}"></option>
+    		</select>
+			<!-- Alasvetovalikko lisää kuva -->
+			<p><label for="images">Kuva</label>
+			 <select id="images" th:field="*{ImageModel}">
+       			<option th:each="imagemodel: ${images}" th:value="${imagemodel.Imageid}" th:text="${imagemodel.ImageName}"></option>
+    		</select></p>
+    		
+							
+			
+			
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<input type="submit" value="Tallenna"></input>
+		</form>
+	</div>
+</body>
+</html>

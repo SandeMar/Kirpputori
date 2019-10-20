@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+
+
+    <title>Kirpputori</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+	
+	<h1> Listaa Kirpputorilta haetut tuotteet</h1>
+	
+	
+	<body>
+	<style>
+h1 {color:#cc0066;
+          text-align: center;
+          font-style:verdana;}
+
+</style>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+</style>
+	
+	
+<div class="col-md-4" style="padding:25px 0">
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Kirjaudu ulos" />
+		</form>
+	</div>
+   <table>
+		<tr>
+		    <th>Tuotenimi</th>
+		    <th>Väri</th>
+		     <th>Koko</th>
+		      <th>Hinta (euroa)</th>
+		      <th>Kategoria</th>
+		      <th sec:authorize="hasAuthority('ADMIN')"> </th>
+				   
+		</tr>  
+    	<tr th:each = "product : ${products}">
+    		<td th:text="${product.productName}"></td>
+    		<td th:text="${product.color}"></td>
+    		<td th:text="${product.size}"></td>
+    		<td th:text="${product.price}"></td>
+    		<td th:text="${product.category.name}"></td> 
+    		<td><a th:href="@{/image/{Imageid}(Imageid=${product.ImageModel.Imageid})}">Katso tuotteesta kuva</a></td>
+    
+ 			
+    	</tr>
+     </table>
+     <br><br>
+  <a th:href="@{/productlist}">Takaisin etusivulle listaukseen.</a>
+	 
+	  
+	  
+	  
+	   
+	   	
+</body>
+</html>
